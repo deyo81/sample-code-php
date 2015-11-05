@@ -61,10 +61,10 @@
   // Submit a CreateCustomerPaymentProfileRequest to create a new Customer Payment Profile
   $paymentprofilerequest = new AnetAPI\CreateCustomerPaymentProfileRequest();
   $paymentprofilerequest->setMerchantAuthentication($merchantAuthentication);
-  $paymentprofilerequest->setCustomerProfileId( $getcustomerprofileid  );
+  $paymentprofilerequest->setCustomerProfileId( $existingcustomerprofileid  );
   $paymentprofilerequest->setPaymentProfile( $paymentprofile );
   $paymentprofilerequest->setValidationMode("liveMode");
-  $controller = new AnetController\CreateCustomerPaymentProfileController($request);
+  $controller = new AnetController\CreateCustomerPaymentProfileController($paymentprofilerequest);
   $response = $controller->executeWithApiResponse( \net\authorize\api\constants\ANetEnvironment::SANDBOX);
   if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") )
   {
